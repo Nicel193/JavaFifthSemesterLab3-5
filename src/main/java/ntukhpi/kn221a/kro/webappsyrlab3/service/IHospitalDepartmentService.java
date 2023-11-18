@@ -1,5 +1,5 @@
-package ntukhpi.kn221a.kro.webappsyrlab2.service;
-import ntukhpi.kn221a.kro.webappsyrlab2.entity.HospitalDepartment;
+package ntukhpi.kn221a.kro.webappsyrlab3.service;
+import ntukhpi.kn221a.kro.webappsyrlab3.entity.HospitalDepartment;
 
 import java.util.List;
 

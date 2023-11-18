@@ -1,4 +1,4 @@
-package ntukhpi.kn221a.kro.webappsyrlab2;
+package ntukhpi.kn221a.kro.webappsyrlab3;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
@@ -6,6 +6,6 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 public class ServletInitializer extends SpringBootServletInitializer {
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(WebJavaSpringFirstTry2023AApplication.class);
+        return application.sources(WebJavaSpringApplication.class);
     }
 }

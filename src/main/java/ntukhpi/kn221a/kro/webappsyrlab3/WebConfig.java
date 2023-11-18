@@ -1,4 +1,4 @@
-package ntukhpi.kn221a.kro.webappsyrlab2;
+package ntukhpi.kn221a.kro.webappsyrlab3;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;

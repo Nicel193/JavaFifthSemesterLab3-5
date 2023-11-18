@@ -1,16 +1,13 @@
-package ntukhpi.kn221a.kro.webappsyrlab2.controller;
+package ntukhpi.kn221a.kro.webappsyrlab3.controller;
 
-import ntukhpi.kn221a.kro.webappsyrlab2.entity.HospitalDepartment;
-import ntukhpi.kn221a.kro.webappsyrlab2.service.IHospitalDepartmentService;
+import ntukhpi.kn221a.kro.webappsyrlab3.entity.HospitalDepartment;
+import ntukhpi.kn221a.kro.webappsyrlab3.service.IHospitalDepartmentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import java.time.LocalDate;
-
 
 @Controller
 public class HospitalDepartmentController {
@@ -104,6 +101,4 @@ public class HospitalDepartmentController {
             return "delete_error";
         }
     }
-
-
 }

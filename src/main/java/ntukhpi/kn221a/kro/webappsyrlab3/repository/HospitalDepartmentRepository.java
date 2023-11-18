@@ -1,6 +1,6 @@
-package ntukhpi.kn221a.kro.webappsyrlab2.repository;
+package ntukhpi.kn221a.kro.webappsyrlab3.repository;
 
-import ntukhpi.kn221a.kro.webappsyrlab2.entity.HospitalDepartment;
+import ntukhpi.kn221a.kro.webappsyrlab3.entity.HospitalDepartment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

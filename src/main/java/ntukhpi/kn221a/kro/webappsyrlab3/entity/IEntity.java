@@ -1,4 +1,4 @@
-package ntukhpi.kn221a.kro.webappsyrlab2.entity;
+package ntukhpi.kn221a.kro.webappsyrlab3.entity;
 
 public interface IEntity {
     Long getId();
