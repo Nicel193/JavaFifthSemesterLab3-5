@@ -15,6 +15,12 @@
 </head>
 <body>
 <div class="content">
+    <div>
+        <h1>Welcome, <span th:text="${#authentication.getName()}"></span>!</h1>
+        <p>Your role(s):
+            <span th:each="authority : ${#authentication.getAuthorities()}" th:text="${authority.authority}"></span>
+        </p>
+    </div>
     <h1>Spring Start (WEB LAB#3)
     </h1>
     <br/>

@@ -4,12 +4,10 @@ import ntukhpi.kn221a.kro.webappsyrlab3.entity.HospitalDepartment;
 import ntukhpi.kn221a.kro.webappsyrlab3.service.IHospitalDepartmentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
+@RequestMapping("hospitalDepartments")
 public class HospitalDepartmentController {
     private final IHospitalDepartmentService hospitalDepartmentService;
     private HospitalDepartment newHospitalDepartment;
@@ -19,22 +17,17 @@ public class HospitalDepartmentController {
     }
 
     @GetMapping("/")
-    public String showStartPage() {
-        return "startpage";
-    }
-
-    @GetMapping("/hospitalDepartments")
     public String showHospitalDepartmentsPage(Model model) {
         model.addAttribute("hospitalDepartments", hospitalDepartmentService.getAllHospitalDepartments());
         return "/hospitalDepartments/hospitalDepartments";
     }
 
-    @PostMapping("/hospitalDepartments")
+    @PostMapping("/")
     public String saveHospitalDepartment(@ModelAttribute("hospitalDepartment") HospitalDepartment hospitalDepartment) {
         return "redirect:/hospitalDepartments";
     }
 
-    @GetMapping("/hospitalDepartments/new")
+    @GetMapping("/new")
     public String createHospitalDepartmentForm(Model model) {
         HospitalDepartment newHospitalDepartment = new HospitalDepartment("Cardiology", "CAR", "B1", 2, 20);
         model.addAttribute("hospitalDepartment", newHospitalDepartment);
@@ -43,7 +36,7 @@ public class HospitalDepartmentController {
         return "/hospitalDepartments/hospitalDepartment";
     }
 
-    @GetMapping("/hospitalDepartments/edit/{idEdit}")
+    @GetMapping("/edit/{idEdit}")
     public String editHospitalDepartmentForm(@PathVariable Long idEdit, Model model) {
         HospitalDepartment hpForUpdateInDB = hospitalDepartmentService.getHospitalDepartmentById(idEdit);
         model.addAttribute("hospitalDepartment", hpForUpdateInDB);
@@ -53,7 +46,7 @@ public class HospitalDepartmentController {
         return "/hospitalDepartments/hospitalDepartment";
     }
 
-    @PostMapping("/hospitalDepartments/save/{id}")
+    @PostMapping("/save/{id}")
     public String saveOrUpdateHospitalDepartment(@PathVariable Long id, @ModelAttribute("hospitalDepartment") HospitalDepartment hospitalDepartmentToSave, Model model) {
         HospitalDepartment hpToSaveInDB = hospitalDepartmentService.getHospitalDepartmentByName(hospitalDepartmentToSave.getNameDep());
         if (id.equals(0L)) {
@@ -87,7 +80,7 @@ public class HospitalDepartmentController {
         }
     }
 
-    @GetMapping("/hospitalDepartments/del/{idHospitalDepartmentForDelete}")
+    @GetMapping("/del/{idHospitalDepartmentForDelete}")
     public String deleteHospitalDepartment(@PathVariable Long idHospitalDepartmentForDelete, Model model) {
         HospitalDepartment delHospitalDepartmentInDB = hospitalDepartmentService.getHospitalDepartmentById(idHospitalDepartmentForDelete);
         if (delHospitalDepartmentInDB != null) {

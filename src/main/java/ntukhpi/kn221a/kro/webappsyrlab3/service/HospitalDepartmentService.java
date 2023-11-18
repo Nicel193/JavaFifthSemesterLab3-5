@@ -42,6 +42,5 @@ public class HospitalDepartmentService implements IHospitalDepartmentService{
     @Override
     public void deleteHospitalDepartmentById(Long idDel) {
         hospitalDepartmentRepository.deleteById(idDel);
-
     }
 }
