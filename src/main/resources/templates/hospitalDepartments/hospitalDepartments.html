@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>HospitalDepartments list (WEB Lab#3)</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+<h1>HospitalDepartments list (WEB Lab#3)</h1>
+<br>
+<table style="border: #000000">
+    <td style="border: #000000">
+        <!--            Кнопка ДОДАТИ       -->
+        <form action="hospitalDepartments/new" method="GET">
+            <!--                <input type="hidden" name="id_hd" value="0">-->
+            <button accesskey="d"> Add HospitalDepartments</button>
+        </form>
+    </td>
+    <td style="border: #000000">
+        <button onclick="sortTableByInt(3)"> Sort by floor</button>
+        <button onclick="sortTableByInt(4)"> Sort by boxCount</button>
+    </td>
+    <td style="border: #000000">
+        <b><label for="search-text"> Find By NameDep </label></b>
+        <input type="text"
+               placeholder="Почніть вводити nameDep" id="search-text"
+               onkeyup="tableSearch()">
+    </td>
+    <td style="border: #000000">
+        <form action="hospitalDepartments" method="get">
+            <button type="submit" accesskey="x">Reset</button>
+        </form>
+    </td>
+</table>
+<br>
+<table id="hospitalDepartments-table">
+    <th>NameDep</th>
+    <th>NameSDep</th>
+    <th>CodeBuilding</th>
+    <th>Floor</th>
+    <th>BoxCount</th>
+    <th colspan="2">Actions</th>
+    </tr>
+    <tr th:each="hd: ${hospitalDepartments}">
+        <td th:text="${hd.getNameDep()}"></td>
+        <td th:text="${hd.getNameSDep()}"></td>
+        <td th:text="${hd.getCodeBuilding()}"></td>
+        <td th:text="${hd.getFloor()}"></td>
+        <td th:text="${hd.getBoxCount()}"></td>
+        <td>
+            <form th:action="@{/hospitalDepartments/edit/{id} (id=${hd.id})}">
+                <button type="submit"> Update</button>
+            </form>
+            <form th:action="@{/hospitalDepartments/del/{id} (id=${hd.id})}">
+                <button type="submit" onclick="return confirmation()"> Delete</button>
+            </form>
+        </td>
+    </tr>
+</table>
+</div>
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>

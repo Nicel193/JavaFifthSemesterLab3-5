@@ -1,0 +1,20 @@
+.content {
+    max-width: 1000px;
+    margin: auto;
+}
+
+TABLE {
+    width: 100%; /* Ширина таблицы */
+    border: 2px solid black; /* Рамка вокруг таблицы */
+}
+
+TD, TH {
+    padding: 3px; /* Поля вокруг содержимого ячеек */
+    border: 2px solid black; /* Рамка вокруг таблицы */
+}
+
+TH {
+    text-align: left; /* Выравнивание по левому краю */
+    background: bisque; /* Цвет фона */
+    color: blue; /* Цвет текста */
+}

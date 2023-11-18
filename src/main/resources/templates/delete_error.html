@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<style type="text/css">
+    .content {
+        max-width: 1000px;
+        margin: auto;
+    }
+</style>
+<head>
+    <title>Delete (WEB LAB#3) </title>
+</head>
+
+<body>
+<div class="content">
+    <h1>DELETE RECORD ERROR</h1>
+    <br>
+    <br>
+    <h2 th:text="${error_del_message}"></h2>
+<!--    <% String s = (String) request.getAttribute("error_del_message");-->
+<!--        System.out.println("delete_error.jsp");-->
+<!--    System.out.println(s);-->
+<!--        String s2 = (String) request.getAttribute("ret_page");-->
+<!--        System.out.println(s2);-->
+<!--    %>-->
+    <br>
+    <br>
+    <br>
+    <a th:href="${ret_page}"> Повернутися </a>
+</div>
+</body>
+</html>
