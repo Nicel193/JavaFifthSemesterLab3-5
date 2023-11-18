@@ -17,6 +17,12 @@
         </form>
     </td>
     <td style="border: #000000">
+        <span>Filter by CodeBuilding:</span>
+        <select id="CodeBuilding_filter" name="CodeBuilding_filter" onchange="filterByCodeBuilding()">
+            <option value="all">all</option>
+        </select>
+    </td>
+    <td style="border: #000000">
         <button onclick="sortTableByInt(3)"> Sort by floor</button>
         <button onclick="sortTableByInt(4)"> Sort by boxCount</button>
     </td>
