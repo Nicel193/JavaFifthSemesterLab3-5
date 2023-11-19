@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
->
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <style type="text/css">
     .content {
         max-width: 1000px;
@@ -14,12 +13,20 @@
     <title>Spring Start (WEB LAB#3)</title>
 </head>
 <body>
+<div sec:authorize="isAuthenticated()">
+    Username: <span sec:authentication="name"></span><br>
+    User role(s):
+    <span th:each="authority : ${#authentication.principal.getAuthorities()}">
+        <span th:text="${authority.authority}"></span>
+    </span>
+</div>
 <div class="content">
     <h1>Spring Start (WEB LAB#3)
     </h1>
     <br/>
     <div class="content">
-        <a href="/hospitalDepartments">Show HospitalDepartments</a>
+        <a href="/hospitalDepartments">Show HospitalDepartments</a><br>
+        <a href="/logout">Logout</a>
     </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
