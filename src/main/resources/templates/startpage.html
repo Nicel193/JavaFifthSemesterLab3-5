@@ -15,12 +15,6 @@
 </head>
 <body>
 <div class="content">
-    <div>
-        <h1>Welcome, <span th:text="${#authentication.getName()}"></span>!</h1>
-        <p>Your role(s):
-            <span th:each="authority : ${#authentication.getAuthorities()}" th:text="${authority.authority}"></span>
-        </p>
-    </div>
     <h1>Spring Start (WEB LAB#3)
     </h1>
     <br/>
@@ -28,5 +22,7 @@
         <a href="/hospitalDepartments">Show HospitalDepartments</a>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script th:src="@{/js/sessionTime.js}"></script>
 </body>
 </html>

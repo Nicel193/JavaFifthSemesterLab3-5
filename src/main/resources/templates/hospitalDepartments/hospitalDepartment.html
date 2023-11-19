@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/res/style.css">
 <head>
     <meta charset="UTF-8">
     <title th:text="${titleHospitalDepartment}"></title>
@@ -13,7 +12,7 @@
     <form th:action="@{/hospitalDepartments/save/{id} (id=${hospitalDepartment.id})}" th:object="${hospitalDepartment}" method="POST">
         <input required hidden type="text" name="id" th:field="*{id}"/>
         <p>
-            <label for="nameDep">Назва відділення</label>
+            <label for="nameDep">Name of department</label>
         </p>
         <p>
             <input type="text" name="nameDep" id="nameDep" th:value="${hospitalDepartment.nameDep}"
@@ -21,7 +20,7 @@
                    required/>
         </p>
         <p>
-            <label for="nameSDep">Повна назва відділення</label>
+            <label for="nameSDep">Full name of the department</label>
         </p>
         <p>
             <input type="text" name="nameSDep" id="nameSDep" th:value="${hospitalDepartment.nameSDep}"
@@ -29,7 +28,7 @@
                    required/>
         </p>
         <p>
-            <label for="codeBuilding">Код будівлі</label>
+            <label for="codeBuilding">Building code</label>
         </p>
         <p>
             <input type="text" name="codeBuilding" id="codeBuilding" th:value="${hospitalDepartment.codeBuilding}"
@@ -37,7 +36,7 @@
                    required/>
         </p>
         <p>
-            <label for="floor">Поверх</label>
+            <label for="floor">Floor</label>
         </p>
         <p>
             <input type="number" name="floor" id="floor" th:value="${hospitalDepartment.floor}"
@@ -45,7 +44,7 @@
                    required/>
         </p>
         <p>
-            <label for="boxCount">Кількість боксів</label>
+            <label for="boxCount">Number of boxes</label>
         </p>
         <p>
             <input type="number" name="boxCount" id="boxCount" th:value="${hospitalDepartment.boxCount}"
@@ -53,10 +52,12 @@
                    required/>
         </p>
         <p>
-            <button type="submit">Зберегти</button>
+            <button type="submit">Save</button>
         </p>
     </form>
-    <a href="/hospitalDepartments">Відміна</a>
+    <a href="/hospitalDepartments">Back</a>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script th:src="@{/js/sessionTime.js}"></script>
 </body>
 </html>

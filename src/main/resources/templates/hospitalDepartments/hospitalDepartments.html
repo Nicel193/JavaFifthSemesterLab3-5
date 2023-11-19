@@ -1,18 +1,24 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>HospitalDepartments list (WEB Lab#3)</title>
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
 </head>
 <body>
+<div sec:authorize="isAuthenticated()">
+    Username: <span sec:authentication="name"></span><br>
+    User role(s):
+    <span th:each="authority : ${#authentication.principal.getAuthorities()}">
+        <span th:text="${authority.authority}"></span>
+    </span>
+</div>
 <h1>HospitalDepartments list (WEB Lab#3)</h1>
 <br>
 <table style="border: #000000">
-    <td style="border: #000000">
-        <!--            Кнопка ДОДАТИ       -->
+    <td style="border: #000000" sec:authorize="hasAuthority('ADMIN')">
         <form action="hospitalDepartments/new" method="GET">
-            <!--                <input type="hidden" name="id_hd" value="0">-->
             <button accesskey="d"> Add HospitalDepartments</button>
         </form>
     </td>
@@ -29,7 +35,7 @@
     <td style="border: #000000">
         <b><label for="search-text"> Find By NameDep </label></b>
         <input type="text"
-               placeholder="Почніть вводити nameDep" id="search-text"
+               placeholder="Start typing nameDep" id="search-text"
                onkeyup="tableSearch()">
     </td>
     <td style="border: #000000">
@@ -45,7 +51,7 @@
     <th>CodeBuilding</th>
     <th>Floor</th>
     <th>BoxCount</th>
-    <th colspan="2">Actions</th>
+    <th colspan="2" sec:authorize="hasAuthority('ADMIN')">Actions</th>
     </tr>
     <tr th:each="hd: ${hospitalDepartments}">
         <td th:text="${hd.getNameDep()}"></td>
@@ -53,7 +59,7 @@
         <td th:text="${hd.getCodeBuilding()}"></td>
         <td th:text="${hd.getFloor()}"></td>
         <td th:text="${hd.getBoxCount()}"></td>
-        <td>
+        <td sec:authorize="hasAuthority('ADMIN')">
             <form th:action="@{/hospitalDepartments/edit/{id} (id=${hd.id})}">
                 <button type="submit"> Update</button>
             </form>
@@ -63,7 +69,8 @@
         </td>
     </tr>
 </table>
-</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script th:src="@{/js/script.js}"></script>
+<script th:src="@{/js/sessionTime.js}"></script>
 </body>
 </html>

@@ -2,10 +2,13 @@ package ntukhpi.kn221a.kro.webappsyrlab3.controller;
 
 import ntukhpi.kn221a.kro.webappsyrlab3.entity.HospitalDepartment;
 import ntukhpi.kn221a.kro.webappsyrlab3.service.IHospitalDepartmentService;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+@EnableMethodSecurity
 @Controller
 @RequestMapping("hospitalDepartments")
 public class HospitalDepartmentController {
@@ -16,17 +19,19 @@ public class HospitalDepartmentController {
         this.hospitalDepartmentService = hospitalDepartmentService;
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public String showHospitalDepartmentsPage(Model model) {
         model.addAttribute("hospitalDepartments", hospitalDepartmentService.getAllHospitalDepartments());
         return "/hospitalDepartments/hospitalDepartments";
     }
 
-    @PostMapping("/")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @PostMapping("")
     public String saveHospitalDepartment(@ModelAttribute("hospitalDepartment") HospitalDepartment hospitalDepartment) {
         return "redirect:/hospitalDepartments";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/new")
     public String createHospitalDepartmentForm(Model model) {
         HospitalDepartment newHospitalDepartment = new HospitalDepartment("Cardiology", "CAR", "B1", 2, 20);
@@ -36,6 +41,7 @@ public class HospitalDepartmentController {
         return "/hospitalDepartments/hospitalDepartment";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/edit/{idEdit}")
     public String editHospitalDepartmentForm(@PathVariable Long idEdit, Model model) {
         HospitalDepartment hpForUpdateInDB = hospitalDepartmentService.getHospitalDepartmentById(idEdit);
@@ -46,6 +52,7 @@ public class HospitalDepartmentController {
         return "/hospitalDepartments/hospitalDepartment";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/save/{id}")
     public String saveOrUpdateHospitalDepartment(@PathVariable Long id, @ModelAttribute("hospitalDepartment") HospitalDepartment hospitalDepartmentToSave, Model model) {
         HospitalDepartment hpToSaveInDB = hospitalDepartmentService.getHospitalDepartmentByName(hospitalDepartmentToSave.getNameDep());
@@ -80,6 +87,7 @@ public class HospitalDepartmentController {
         }
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/del/{idHospitalDepartmentForDelete}")
     public String deleteHospitalDepartment(@PathVariable Long idHospitalDepartmentForDelete, Model model) {
         HospitalDepartment delHospitalDepartmentInDB = hospitalDepartmentService.getHospitalDepartmentById(idHospitalDepartmentForDelete);
@@ -87,8 +95,8 @@ public class HospitalDepartmentController {
             hospitalDepartmentService.deleteHospitalDepartmentById(idHospitalDepartmentForDelete);
             return "redirect:/hospitalDepartments";
         } else {
-            String messageDeleteError = "Такого співробітника немає у БД!\n" +
-                    "Object: EMPLOYEE, id=" + idHospitalDepartmentForDelete;
+            String messageDeleteError = "Такого немає у БД!\n" +
+                    "Object: HOSPITAL_DEPARTMENT, id=" + idHospitalDepartmentForDelete;
             model.addAttribute("error_del_message", messageDeleteError);
             model.addAttribute("ret_page", "redirect:/hospitalDepartments");
             return "delete_error";
