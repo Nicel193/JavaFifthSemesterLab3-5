@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.File;
 
@@ -19,17 +20,18 @@ public class EmailSenderController {
         this.hospitalDepartmentService = hospitalDepartmentService;
     }
 
-    @PostMapping("")
-    public ResponseEntity<String> saveHospitalDepartment() {
+    @PostMapping("/send")
+    public ResponseEntity<String> saveHospitalDepartment(@RequestParam String email) {
         File file = new JsonCreationService(hospitalDepartmentService)
                 .createJsonFileFromDatabase("hospitalDepartments");
 
-        EmailSenderService.sendEmailWithAttachment("sender@gmail.com",
-                "nicelgoog@gmail.com",
+        boolean isSent = EmailSenderService.sendEmailWithAttachment("sender@gmail.com",
+                email,
                 "Test Email",
                 file,
-                true);
+                false);
 
-        return ResponseEntity.ok("Email sent successfully");
+        return isSent ? ResponseEntity.ok("Email sent successfully")
+                : ResponseEntity.status(500).body("Email doesn't sent");
     }
 }

@@ -37,7 +37,7 @@ public final class EmailSenderService {
         PROPERTIES.put("mail.smtp.starttls.enable", "true");
     }
 
-    public static void sendEmailWithAttachment(String from, String to, String subject, File fileToSend, boolean debug) {
+    public static boolean sendEmailWithAttachment(String from, String to, String subject, File fileToSend, boolean debug) {
         Authenticator authenticator = new Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(USERNAME, PASSWORD);
@@ -71,12 +71,15 @@ public final class EmailSenderService {
 
             Transport.send(msg);
 
+            return true;
         } catch (MessagingException mex) {
             mex.printStackTrace();
             Exception ex = null;
             if ((ex = mex.getNextException()) != null) {
                 ex.printStackTrace();
             }
+
+            return false;
         }
     }
 }
