@@ -1,20 +1,79 @@
-.content {
-    max-width: 1000px;
-    margin: auto;
+/* Обнуляем отступы и поля для всех элементов */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-TABLE {
-    width: 100%; /* Ширина таблицы */
-    border: 2px solid black; /* Рамка вокруг таблицы */
+/* Общие стили для body */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: #f7f7f7;
+    color: #333;
 }
 
-TD, TH {
-    padding: 3px; /* Поля вокруг содержимого ячеек */
-    border: 2px solid black; /* Рамка вокруг таблицы */
+/* Стили для заголовка */
+h1 {
+    font-size: 28px;
+    color: #007bff;
+    margin-bottom: 20px;
 }
 
-TH {
-    text-align: left; /* Выравнивание по левому краю */
-    background: bisque; /* Цвет фона */
-    color: blue; /* Цвет текста */
+/* Стили для таблицы */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+/* Стили для ячеек таблицы */
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+/* Стили для кнопок */
+button, input[type="submit"] {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+form button {
+    display: inline; /* Размещаем кнопки в ряд */
+}
+
+/* Стили для поля ввода email */
+input {
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    width: 250px;
+    margin-right: 10px;
+}
+
+/* Стили для параграфа с результатом отправки */
+p {
+    color: #007bff;
+    margin-top: 10px;
+}
+
+.user-info {
+    position: absolute;
+    top: 10px; /* регулируйте значение top, чтобы установить расстояние от верхнего края */
+    right: 10px; /* регулируйте значение right, чтобы установить расстояние от правого края */
+    background-color: #fff; /* цвет фона блока */
+    padding: 10px;
+    border: 1px solid #ccc; /* опционально: границы блока */
+    border-radius: 4px;
 }

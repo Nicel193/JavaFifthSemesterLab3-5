@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="${titleHospitalDepartment}"></title>
-    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" th:href="@{/css/form.css}" />
 </head>
 <body>
-<div sec:authorize="isAuthenticated()">
+<div class="user-info" sec:authorize="isAuthenticated()">
     Username: <span sec:authentication="name"></span><br>
     User role(s):
     <span th:each="authority : ${#authentication.principal.getAuthorities()}">

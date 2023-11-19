@@ -7,14 +7,14 @@
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
 </head>
 <body>
-<div sec:authorize="isAuthenticated()">
+<div class="user-info" sec:authorize="isAuthenticated()">
     Username: <span sec:authentication="name"></span><br>
     User role(s):
     <span th:each="authority : ${#authentication.principal.getAuthorities()}">
         <span th:text="${authority.authority}"></span>
     </span>
 </div>
-<h1>HospitalDepartments list (WEB Lab#3)</h1>
+<h1>HospitalDepartments list (WEB Lab#3-5)</h1>
 <br>
 <table style="border: #000000">
     <td style="border: #000000" sec:authorize="hasAuthority('ADMIN')">
@@ -73,7 +73,6 @@
 <form id="emailForm" action="/email/send" method="post">
     <label for="email">Email:</label>
     <input type="email" id="email" name="email" required>
-    <br><br>
     <input type="submit" value="Send">
     <p id="result"></p>
 </form>

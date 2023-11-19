@@ -7,16 +7,16 @@ document.addEventListener("DOMContentLoaded", () => {
 $(document).ready(function() {
     $("#emailForm").submit(function(event) {
         event.preventDefault();
-        var formData = $(this).serialize(); // Получаем данные формы
+        var formData = $(this).serialize();
         $.ajax({
             type: "POST",
-            url: "/email/send", // Путь к обработчику на сервере
-            data: formData, // Данные для отправки
+            url: "/email/send",
+            data: formData,
             success: function(response) {
-                $("#result").text(response); // Обновляем содержимое элемента с id="result"
+                $("#result").text(response);
             },
             error: function(xhr, status, error) {
-                $("#result").text("Error occurred while sending email."); // В случае ошибки
+                $("#result").text("Error occurred while sending email.");
             }
         });
     });
