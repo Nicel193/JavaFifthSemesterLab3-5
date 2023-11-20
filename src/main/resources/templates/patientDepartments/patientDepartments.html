@@ -3,7 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>HospitalDepartments list (WEB Lab#3)</title>
+    <title>PatientDepartments list (WEB Lab#3)</title>
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
 </head>
 <body>
@@ -14,12 +14,12 @@
         <span th:text="${authority.authority}"></span>
     </span>
 </div>
-<h1>HospitalDepartments list (WEB Lab#3-5)</h1>
+<h1>PatientDepartments list (WEB Lab#3-5)</h1>
 <br>
 <table style="border: #000000">
     <td style="border: #000000" sec:authorize="hasAuthority('ADMIN')">
-        <form action="hospitalDepartments/new" method="GET">
-            <button accesskey="d"> Add HospitalDepartments</button>
+        <form action="patientDepartments/new" method="GET">
+            <button accesskey="d"> Add PatientDepartment</button>
         </form>
     </td>
     <td style="border: #000000">
@@ -39,36 +39,36 @@
                onkeyup="tableSearch()">
     </td>
     <td style="border: #000000">
-        <form action="hospitalDepartments" method="get">
+        <form action="/patientDepartments" method="get">
             <button type="submit" accesskey="x">Reset</button>
         </form>
     </td>
 </table>
 <br>
-<table id="hospitalDepartments-table">
-    <th>NameDep</th>
-    <th>NameSDep</th>
-    <th>CodeBuilding</th>
-    <th>Floor</th>
-    <th>BoxCount</th>
+<table id="patientDepartments-table">
+    <th>Surname</th>
+    <th>Name</th>
+    <th>PName</th>
+    <th>FullYears</th>
+    <th>HospitalDepartment</th>
+    <th>ArrivalTime</th>
+    <th>Number</th>
     <th colspan="2" sec:authorize="hasAuthority('ADMIN')">Actions</th>
     </tr>
-    <tr th:each="hd: ${hospitalDepartments}">
-        <td th:text="${hd.getNameDep()}"></td>
-        <td th:text="${hd.getNameSDep()}"></td>
-        <td th:text="${hd.getCodeBuilding()}"></td>
-        <td th:text="${hd.getFloor()}"></td>
-        <td th:text="${hd.getBoxCount()}"></td>
+    <tr th:each="hd: ${patientDepartments}">
+        <td th:text="${hd.getSurname()}"></td>
+        <td th:text="${hd.getName()}"></td>
+        <td th:text="${hd.getPname()}"></td>
+        <td th:text="${hd.getFullYears()}"></td>
+        <td th:text="${hd.getHospitalDepartmentName()}"></td>
+        <td th:text="${hd.getArrivalTime()}"></td>
+        <td th:text="${hd.getNumber()}"></td>
         <td sec:authorize="hasAuthority('ADMIN')">
-            <form th:action="@{/hospitalDepartments/edit/{id} (id=${hd.id})}">
+            <form th:action="@{/patientDepartments/edit/{id} (id=${hd.id})}">
                 <button type="submit"> Update</button>
             </form>
-            <form th:action="@{/hospitalDepartments/del/{id} (id=${hd.id})}">
+            <form th:action="@{/patientDepartments/del/{id} (id=${hd.id})}">
                 <button type="submit" onclick="return confirmation()"> Delete</button>
-            </form>
-            <form action="/patientDepartments" method="GET">
-                <input type="hidden" name="id" th:value="${hd.id}" />
-                <button accesskey="d"> View patients</button>
             </form>
         </td>
     </tr>

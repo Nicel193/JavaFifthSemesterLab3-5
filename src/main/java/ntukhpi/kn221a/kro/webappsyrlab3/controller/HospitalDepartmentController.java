@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("hospitalDepartments")
 public class HospitalDepartmentController {
     private final IHospitalDepartmentService hospitalDepartmentService;
-    private HospitalDepartment newHospitalDepartment;
 
     public HospitalDepartmentController(IHospitalDepartmentService hospitalDepartmentService) {
         this.hospitalDepartmentService = hospitalDepartmentService;

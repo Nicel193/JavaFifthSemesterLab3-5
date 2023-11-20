@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${titlePatientDepartment}"></title>
+    <link rel="stylesheet" th:href="@{/css/form.css}"/>
+</head>
+<body>
+<div class="user-info" sec:authorize="isAuthenticated()">
+    Username: <span sec:authentication="name"></span><br>
+    User role(s):
+    <span th:each="authority : ${#authentication.principal.getAuthorities()}">
+        <span th:text="${authority.authority}"></span>
+    </span>
+</div>
+<div class="content">
+    <h1 th:text="${titlePatientDepartment}"></h1>
+    <p style="color: red"><span th:text="${errorString}"></span></p>
+    <form th:action="@{/patientDepartments/save/{id} (id=${patientDepartment.id})}" th:object="${patientDepartment}"
+          method="POST">
+        <input required hidden type="text" name="id" th:field="*{id}"/>
+        <p>
+            <label for="surname">Surname</label>
+        </p>
+        <p>
+            <input type="text" name="surname" id="surname" th:value="${patientDepartment.surname}"
+                   required/>
+        </p>
+        <p>
+            <label for="name">Name</label>
+        </p>
+        <p>
+            <input type="text" name="name" id="name" th:value="${patientDepartment.name}"
+                   required/>
+        </p>
+        <p>
+            <label for="pname">Patronymic Name</label>
+        </p>
+        <p>
+            <input type="text" name="pname" id="pname" th:value="${patientDepartment.pname}"
+                   required/>
+        </p>
+        <p>
+            <label for="fullYears">Full Years</label>
+        </p>
+        <p>
+            <input type="number" name="fullYears" id="fullYears" th:value="${patientDepartment.fullYears}"
+                   min="0"
+                   required/>
+        </p>
+        <p>
+            <label for="arrival">Arrival</label>
+        </p>
+        <p>
+            <input type="datetime-local" name="arrival" id="arrival" th:value="${patientDepartment.arrival}"
+                   required/>
+        </p>
+        <p>
+            <label for="number">Number</label>
+        </p>
+        <p>
+            <input type="number" name="number" id="number" th:value="${patientDepartment.number}"
+                   min="1" th:max="${patientDepartment.getDepartment().getBoxCount()}"
+                   required/>
+        </p>
+        <button accesskey="d"> Save</button>
+    </form>
+    <a href="/patientDepartments">Back</a>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script th:src="@{/js/sessionTime.js}"></script>
+</body>
+</html>
