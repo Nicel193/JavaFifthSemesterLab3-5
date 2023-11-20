@@ -23,8 +23,19 @@
                 <button class="btn btn-primary" accesskey="d">Add patient</button>
             </form>
         </div>
+        <div class="col-md-4">
+            <b><label for="search-text"> Find By NameDep </label></b>
+            <input type="text" class="form-control"
+                   placeholder="Start typing nameDep" id="search-text"
+                   onkeyup="tableSearch()">
+        </div>
+        <div class="col-md-3">
+            <button class="btn btn-secondary" onclick="sortTableByInt(3)"> Sort by FullYears</button>
+            <button class="btn btn-secondary" onclick="sortTableByInt(6)"> Sort by Number</button>
+        </div>
         <div class="col-md-2">
-            <form action="/patientDepartments" method="get">
+            <form action="/patientDepartments" method="get" th:if="${not #lists.isEmpty(patientDepartments)}">
+                <input type="hidden" name="id" th:value="${patientDepartments.get(0).department.id}"/>
                 <button type="submit" class="btn btn-primary" accesskey="x">Reset</button>
             </form>
         </div>
@@ -74,7 +85,7 @@
     </form>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script th:src="@{/js/script.js}"></script>
+<script th:src="@{/js/script-filter.js}"></script>
 <script th:src="@{/js/sessionTime.js}"></script>
 </body>
 </html>

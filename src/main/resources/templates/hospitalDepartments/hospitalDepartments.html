@@ -40,6 +40,11 @@
                    placeholder="Start typing nameDep" id="search-text"
                    onkeyup="tableSearch()">
         </div>
+        <div class="col-md-2">
+            <form action="/hospitalDepartments" method="get">
+                <button type="submit" class="btn btn-primary" accesskey="x">Reset</button>
+            </form>
+        </div>
     </div>
     <table id="hospitalDepartments-table" class="table table-bordered table-striped">
         <thead>

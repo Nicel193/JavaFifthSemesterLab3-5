@@ -114,8 +114,8 @@ public class PatientDepartmentController {
             patientDepartmentService.deletePatientDepartmentById(idPatientDepartmentForDelete);
             return "redirect:/patientDepartments?id=" + hospitalDepartment.getId();
         } else {
-            String messageDeleteError = "Такого немає у БД!\n" +
-                    "Object: HOSPITAL_DEPARTMENT, id=" + idPatientDepartmentForDelete;
+            String messageDeleteError = "There is no such thing in the database!\n" +
+                    "Object: PATIENT_DEPARTMENT, id=" + idPatientDepartmentForDelete;
             model.addAttribute("error_del_message", messageDeleteError);
             model.addAttribute("ret_page", PatientDepartmentsRedirect());
             return "delete_error";

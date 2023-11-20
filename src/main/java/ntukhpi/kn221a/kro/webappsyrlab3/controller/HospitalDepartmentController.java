@@ -90,14 +90,22 @@ public class HospitalDepartmentController {
     @GetMapping("/del/{idHospitalDepartmentForDelete}")
     public String deleteHospitalDepartment(@PathVariable Long idHospitalDepartmentForDelete, Model model) {
         HospitalDepartment delHospitalDepartmentInDB = hospitalDepartmentService.getHospitalDepartmentById(idHospitalDepartmentForDelete);
+
+        if(hospitalDepartmentService.getHospitalDepartmentById(idHospitalDepartmentForDelete) != null){
+            String messageDeleteError = "All patients must be removed!";
+            model.addAttribute("error_del_message", messageDeleteError);
+            model.addAttribute("ret_page", "redirect:/hospitalDepartments");
+            return "delete_error";
+        }
+
         if (delHospitalDepartmentInDB != null) {
             hospitalDepartmentService.deleteHospitalDepartmentById(idHospitalDepartmentForDelete);
             return "redirect:/hospitalDepartments";
         } else {
-            String messageDeleteError = "Такого немає у БД!\n" +
+            String messageDeleteError = "There is no such thing in the database!\n" +
                     "Object: HOSPITAL_DEPARTMENT, id=" + idHospitalDepartmentForDelete;
             model.addAttribute("error_del_message", messageDeleteError);
-            model.addAttribute("ret_page", "redirect:/hospitalDepartments");
+            model.addAttribute("ret_page", "/hospitalDepartments");
             return "delete_error";
         }
     }
