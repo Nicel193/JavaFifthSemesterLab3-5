@@ -1,31 +1,41 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<html>
 <head>
     <meta charset="UTF-8">
     <title>Spring Start (WEB LAB#3)</title>
-    <link rel="stylesheet" th:href="@{/css/form.css}" />
+    <!-- Підключення Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Підключення власних стилів -->
+    <link rel="stylesheet" th:href="@{/css/form.css}"/>
 </head>
 <body>
-<div class="user-info" sec:authorize="isAuthenticated()">
-    Username: <span sec:authentication="name"></span><br>
-    User role(s):
-    <span th:each="authority : ${#authentication.principal.getAuthorities()}">
-        <span th:text="${authority.authority}"></span>
-    </span>
-</div>
-<div class="content">
-    <h1>Spring Start (WEB LAB#3-5)
-    </h1>
-    <br/>
-    <div class="content">
-        <a href="/hospitalDepartments">Show HospitalDepartments</a><br>
-        <a href="/patientDepartments">Show PatientDepartments</a><br>
-        <a href="/logout">Logout</a>
+<div>
+    <div class="container">
+        <div class="user-info" sec:authorize="isAuthenticated()">
+            <p>Username: <span sec:authentication="name"></span></p>
+            <p>User role(s):
+                <span th:each="authority : ${#authentication.principal.getAuthorities()}">
+                <span th:text="${authority.authority}"></span>
+            </span>
+            </p>
+        </div>
+    </div>
+    <div class="text-center">
+        <div>
+            <h1 class="text-center">Spring Start (WEB LAB#3-5)</h1>
+            <br/>
+            <div class="text-center">
+                <a href="/hospitalDepartments" class="btn btn-primary">Show HospitalDepartments</a>
+                <br><br>
+                <a href="/logout" class="btn btn-danger">Logout</a>
+            </div>
+        </div>
     </div>
 </div>
+<!-- Підключення jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Підключення власних скриптів -->
 <script th:src="@{/js/sessionTime.js}"></script>
 </body>
 </html>

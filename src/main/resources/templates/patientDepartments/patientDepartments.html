@@ -1,85 +1,78 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>PatientDepartments list (WEB Lab#3)</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
 </head>
-<body>
-<div class="user-info" sec:authorize="isAuthenticated()">
-    Username: <span sec:authentication="name"></span><br>
-    User role(s):
-    <span th:each="authority : ${#authentication.principal.getAuthorities()}">
-        <span th:text="${authority.authority}"></span>
-    </span>
+<body class="bg-light">
+<div class="container">
+    <div class="user-info mt-3" sec:authorize="isAuthenticated()">
+        Username: <span sec:authentication="name"></span><br>
+        User role(s):
+        <span th:each="authority : ${#authentication.principal.getAuthorities()}">
+            <span th:text="${authority.authority}"></span>
+        </span>
+    </div>
+    <h1>PatientDepartments list (WEB Lab#3-5)</h1>
+    <br>
+    <div class="row">
+        <div class="col-md-2" sec:authorize="hasAuthority('ADMIN')">
+            <form action="patientDepartments/new" method="GET">
+                <button class="btn btn-primary" accesskey="d">Add patient</button>
+            </form>
+        </div>
+        <div class="col-md-2">
+            <form action="/patientDepartments" method="get">
+                <button type="submit" class="btn btn-primary" accesskey="x">Reset</button>
+            </form>
+        </div>
+    </div>
+    <br>
+    <table id="patientDepartments-table" class="table table-striped">
+        <thead>
+        <tr>
+            <th>Surname</th>
+            <th>Name</th>
+            <th>PName</th>
+            <th>FullYears</th>
+            <th>HospitalDepartment</th>
+            <th>ArrivalTime</th>
+            <th>Number</th>
+            <th colspan="2" sec:authorize="hasAuthority('ADMIN')">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="hd: ${patientDepartments}">
+            <td th:text="${hd.getSurname()}"></td>
+            <td th:text="${hd.getName()}"></td>
+            <td th:text="${hd.getPname()}"></td>
+            <td th:text="${hd.getFullYears()}"></td>
+            <td th:text="${hd.getHospitalDepartmentName()}"></td>
+            <td th:text="${hd.getArrivalTime()}"></td>
+            <td th:text="${hd.getNumber()}"></td>
+            <td sec:authorize="hasAuthority('ADMIN')">
+                <div class="row">
+                    <div class="col-md-6">
+                        <form th:action="@{/patientDepartments/edit/{id} (id=${hd.id})}">
+                            <button type="submit" class="btn btn-primary">Update</button>
+                        </form>
+                    </div>
+                    <div class="col-md-6">
+                        <form th:action="@{/patientDepartments/del/{id} (id=${hd.id})}">
+                            <button type="submit" class="btn btn-danger" onclick="return confirmation()">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <form action="/hospitalDepartments" method="get">
+        <button type="submit" class="btn btn-secondary" accesskey="x">Back</button>
+    </form>
 </div>
-<h1>PatientDepartments list (WEB Lab#3-5)</h1>
-<br>
-<table style="border: #000000">
-    <td style="border: #000000" sec:authorize="hasAuthority('ADMIN')">
-        <form action="patientDepartments/new" method="GET">
-            <button accesskey="d"> Add PatientDepartment</button>
-        </form>
-    </td>
-    <td style="border: #000000">
-        <span>Filter by CodeBuilding:</span>
-        <select id="CodeBuilding_filter" name="CodeBuilding_filter" onchange="filterByCodeBuilding()">
-            <option value="all">all</option>
-        </select>
-    </td>
-    <td style="border: #000000">
-        <button onclick="sortTableByInt(3)"> Sort by floor</button>
-        <button onclick="sortTableByInt(4)"> Sort by boxCount</button>
-    </td>
-    <td style="border: #000000">
-        <b><label for="search-text"> Find By NameDep </label></b>
-        <input type="text"
-               placeholder="Start typing nameDep" id="search-text"
-               onkeyup="tableSearch()">
-    </td>
-    <td style="border: #000000">
-        <form action="/patientDepartments" method="get">
-            <button type="submit" accesskey="x">Reset</button>
-        </form>
-    </td>
-</table>
-<br>
-<table id="patientDepartments-table">
-    <th>Surname</th>
-    <th>Name</th>
-    <th>PName</th>
-    <th>FullYears</th>
-    <th>HospitalDepartment</th>
-    <th>ArrivalTime</th>
-    <th>Number</th>
-    <th colspan="2" sec:authorize="hasAuthority('ADMIN')">Actions</th>
-    </tr>
-    <tr th:each="hd: ${patientDepartments}">
-        <td th:text="${hd.getSurname()}"></td>
-        <td th:text="${hd.getName()}"></td>
-        <td th:text="${hd.getPname()}"></td>
-        <td th:text="${hd.getFullYears()}"></td>
-        <td th:text="${hd.getHospitalDepartmentName()}"></td>
-        <td th:text="${hd.getArrivalTime()}"></td>
-        <td th:text="${hd.getNumber()}"></td>
-        <td sec:authorize="hasAuthority('ADMIN')">
-            <form th:action="@{/patientDepartments/edit/{id} (id=${hd.id})}">
-                <button type="submit"> Update</button>
-            </form>
-            <form th:action="@{/patientDepartments/del/{id} (id=${hd.id})}">
-                <button type="submit" onclick="return confirmation()"> Delete</button>
-            </form>
-        </td>
-    </tr>
-</table>
-<br><br>
-<form id="emailForm" action="/email/send" method="post">
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
-    <input type="submit" value="Send">
-    <p id="result"></p>
-</form>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script th:src="@{/js/script.js}"></script>
 <script th:src="@{/js/sessionTime.js}"></script>

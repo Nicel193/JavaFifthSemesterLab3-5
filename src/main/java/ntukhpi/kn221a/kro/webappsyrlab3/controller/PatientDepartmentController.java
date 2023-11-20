@@ -19,7 +19,6 @@ public class PatientDepartmentController {
     private final IPatientDepartmentService patientDepartmentService;
     private final IHospitalDepartmentService hospitalDepartmentService;
     private HospitalDepartment hospitalDepartment;
-    
 
     public PatientDepartmentController(IPatientDepartmentService patientDepartmentService, IHospitalDepartmentService hospitalDepartmentService) {
         this.patientDepartmentService = patientDepartmentService;
@@ -50,7 +49,7 @@ public class PatientDepartmentController {
                 35,
                 hospitalDepartment,
                 currentDateTime,
-                "A101"
+                1
         );
 
         model.addAttribute("patientDepartment", newPatientDepartment);

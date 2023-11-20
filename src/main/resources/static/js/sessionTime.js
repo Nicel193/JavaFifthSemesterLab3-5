@@ -1,4 +1,4 @@
-const logoutTimeSec = 60;
+const logoutTimeSec = 600;
 var idleTime = 0;
 
 $(document).ready(function () {

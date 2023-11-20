@@ -1,71 +1,56 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head>
     <meta charset="UTF-8">
     <title th:text="${titleHospitalDepartment}"></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" th:href="@{/css/form.css}" />
 </head>
+
 <body>
-<div class="user-info" sec:authorize="isAuthenticated()">
-    Username: <span sec:authentication="name"></span><br>
-    User role(s):
-    <span th:each="authority : ${#authentication.principal.getAuthorities()}">
-        <span th:text="${authority.authority}"></span>
-    </span>
+<div class="container">
+    <div class="user-info" sec:authorize="isAuthenticated()">
+        Username: <span sec:authentication="name"></span><br>
+        User role(s):
+        <span th:each="authority : ${#authentication.principal.getAuthorities()}">
+                <span th:text="${authority.authority}"></span>
+            </span>
+    </div>
+    <div class="container-fluid">
+        <h1 th:text="${titleHospitalDepartment}"></h1>
+        <p style="color: red"><span th:text="${errorString}"></span></p>
+        <form th:action="@{/hospitalDepartments/save/{id} (id=${hospitalDepartment.id})}" th:object="${hospitalDepartment}" method="POST">
+            <input required hidden type="text" name="id" th:field="*{id}" />
+            <div class="form-group">
+                <label for="nameDep">Name of department</label>
+                <input type="text" class="form-control" name="nameDep" id="nameDep" th:value="${hospitalDepartment.nameDep}" pattern="[A-Z][a-zA-Z]*" required />
+            </div>
+            <div class="form-group">
+                <label for="nameSDep">Full name of the department</label>
+                <input type="text" class="form-control" name="nameSDep" id="nameSDep" th:value="${hospitalDepartment.nameSDep}" pattern="[A-Z][a-zA-Z]*" required />
+            </div>
+            <div class="form-group">
+                <label for="codeBuilding">Building code</label>
+                <input type="text" class="form-control" name="codeBuilding" id="codeBuilding" th:value="${hospitalDepartment.codeBuilding}" pattern="[A-Z0-9]*" required />
+            </div>
+            <div class="form-group">
+                <label for="floor">Floor</label>
+                <input type="number" class="form-control" name="floor" id="floor" th:value="${hospitalDepartment.floor}" min="1" max="10" required />
+            </div>
+            <div class="form-group">
+                <label for="boxCount">Number of boxes</label>
+                <input type="number" class="form-control" name="boxCount" id="boxCount" th:value="${hospitalDepartment.boxCount}" min="1" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+        <a href="/hospitalDepartments" class="btn btn-secondary">Back</a>
+    </div>
 </div>
-<div class="content">
-    <h1 th:text="${titleHospitalDepartment}"></h1>
-    <p style="color: red"><span th:text="${errorString}"></span></p>
-    <form th:action="@{/hospitalDepartments/save/{id} (id=${hospitalDepartment.id})}" th:object="${hospitalDepartment}" method="POST">
-        <input required hidden type="text" name="id" th:field="*{id}"/>
-        <p>
-            <label for="nameDep">Name of department</label>
-        </p>
-        <p>
-            <input type="text" name="nameDep" id="nameDep" th:value="${hospitalDepartment.nameDep}"
-                   pattern="[A-Z][a-zA-Z]*"
-                   required/>
-        </p>
-        <p>
-            <label for="nameSDep">Full name of the department</label>
-        </p>
-        <p>
-            <input type="text" name="nameSDep" id="nameSDep" th:value="${hospitalDepartment.nameSDep}"
-                   pattern="[A-Z][a-zA-Z]*"
-                   required/>
-        </p>
-        <p>
-            <label for="codeBuilding">Building code</label>
-        </p>
-        <p>
-            <input type="text" name="codeBuilding" id="codeBuilding" th:value="${hospitalDepartment.codeBuilding}"
-                   pattern="[A-Z0-9]*"
-                   required/>
-        </p>
-        <p>
-            <label for="floor">Floor</label>
-        </p>
-        <p>
-            <input type="number" name="floor" id="floor" th:value="${hospitalDepartment.floor}"
-                   min="1" max="10"
-                   required/>
-        </p>
-        <p>
-            <label for="boxCount">Number of boxes</label>
-        </p>
-        <p>
-            <input type="number" name="boxCount" id="boxCount" th:value="${hospitalDepartment.boxCount}"
-                   min="1"
-                   required/>
-        </p>
-        <p>
-            <button type="submit">Save</button>
-        </p>
-    </form>
-    <a href="/hospitalDepartments">Back</a>
-</div>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script th:src="@{/js/sessionTime.js}"></script>
 </body>
+
 </html>

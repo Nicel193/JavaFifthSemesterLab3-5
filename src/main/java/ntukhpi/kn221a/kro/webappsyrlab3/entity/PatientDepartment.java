@@ -38,11 +38,11 @@ public class PatientDepartment {
     private LocalDateTime arrival;
 
     @Column(name = "number", nullable = false)
-    private String number;
+    private int number;
 
     public PatientDepartment(String surname, String name, String pname,
                              int fullYears, HospitalDepartment department,
-                             LocalDateTime arrival, String number) {
+                             LocalDateTime arrival, int number) {
         this.id = 0L;
         this.surname = surname;
         this.name = name;
