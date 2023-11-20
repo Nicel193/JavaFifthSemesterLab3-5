@@ -1,5 +1,6 @@
 package ntukhpi.kn221a.kro.webappsyrlab3.service;
 
+import ntukhpi.kn221a.kro.webappsyrlab3.entity.HospitalDepartment;
 import ntukhpi.kn221a.kro.webappsyrlab3.entity.PatientDepartment;
 import ntukhpi.kn221a.kro.webappsyrlab3.repository.PatientDepartmentRepository;
 import org.springframework.stereotype.Service;
@@ -15,8 +16,8 @@ public class PatientDepartmentService implements IPatientDepartmentService {
     }
 
     @Override
-    public List<PatientDepartment> getAllPatientDepartments() {
-        return PatientDepartmentRepository.findAll();
+    public List<PatientDepartment> getAllDepartmentPatients(HospitalDepartment hospitalDepartment) {
+        return PatientDepartmentRepository.findByDepartmentId(hospitalDepartment.getId());
     }
 
     @Override

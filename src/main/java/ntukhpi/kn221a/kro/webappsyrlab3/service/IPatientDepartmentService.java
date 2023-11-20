@@ -1,10 +1,11 @@
 package ntukhpi.kn221a.kro.webappsyrlab3.service;
+import ntukhpi.kn221a.kro.webappsyrlab3.entity.HospitalDepartment;
 import ntukhpi.kn221a.kro.webappsyrlab3.entity.PatientDepartment;
 
 import java.util.List;
 
 public interface IPatientDepartmentService {
-    List<PatientDepartment> getAllPatientDepartments();
+    List<PatientDepartment> getAllDepartmentPatients(HospitalDepartment hospitalDepartment);
     PatientDepartment getPatientDepartmentByName(String name);
     PatientDepartment getPatientDepartmentById(Long id);
     PatientDepartment savePatientDepartment(PatientDepartment PatientDepartment);
