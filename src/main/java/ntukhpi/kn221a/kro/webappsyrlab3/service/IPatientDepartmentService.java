@@ -5,7 +5,7 @@ import ntukhpi.kn221a.kro.webappsyrlab3.entity.PatientDepartment;
 import java.util.List;
 
 public interface IPatientDepartmentService {
-    List<PatientDepartment> getAllDepartmentPatients(HospitalDepartment hospitalDepartment);
+    List<PatientDepartment> getAllDepartmentPatients(Long depId);
     PatientDepartment getPatientDepartmentByName(String name);
     PatientDepartment getPatientDepartmentById(Long id);
     PatientDepartment savePatientDepartment(PatientDepartment PatientDepartment);

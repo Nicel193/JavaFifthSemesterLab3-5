@@ -16,8 +16,8 @@ public class PatientDepartmentService implements IPatientDepartmentService {
     }
 
     @Override
-    public List<PatientDepartment> getAllDepartmentPatients(HospitalDepartment hospitalDepartment) {
-        return PatientDepartmentRepository.findByDepartmentId(hospitalDepartment.getId());
+    public List<PatientDepartment> getAllDepartmentPatients(Long depId) {
+        return PatientDepartmentRepository.findByDepartmentId(depId);
     }
 
     @Override

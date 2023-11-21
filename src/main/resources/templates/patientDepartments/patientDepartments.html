@@ -61,7 +61,7 @@
             <td th:text="${hd.getPname()}"></td>
             <td th:text="${hd.getFullYears()}"></td>
             <td th:text="${hd.getHospitalDepartmentName()}"></td>
-            <td th:text="${hd.getArrivalTime()}"></td>
+            <td th:text="${#temporals.format(hd.arrival, 'yyyy-MM-dd HH:mm')}"></td>
             <td th:text="${hd.getNumber()}"></td>
             <td sec:authorize="hasAuthority('ADMIN')">
                 <div class="row">

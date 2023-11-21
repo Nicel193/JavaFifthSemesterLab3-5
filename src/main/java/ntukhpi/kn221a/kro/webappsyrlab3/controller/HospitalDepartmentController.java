@@ -2,6 +2,7 @@ package ntukhpi.kn221a.kro.webappsyrlab3.controller;
 
 import ntukhpi.kn221a.kro.webappsyrlab3.entity.HospitalDepartment;
 import ntukhpi.kn221a.kro.webappsyrlab3.service.IHospitalDepartmentService;
+import ntukhpi.kn221a.kro.webappsyrlab3.service.IPatientDepartmentService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.stereotype.Controller;
@@ -13,8 +14,10 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("hospitalDepartments")
 public class HospitalDepartmentController {
     private final IHospitalDepartmentService hospitalDepartmentService;
+    private final IPatientDepartmentService patientDepartmentService;
 
-    public HospitalDepartmentController(IHospitalDepartmentService hospitalDepartmentService) {
+    public HospitalDepartmentController(IPatientDepartmentService patientDepartmentService, IHospitalDepartmentService hospitalDepartmentService) {
+        this.patientDepartmentService = patientDepartmentService;
         this.hospitalDepartmentService = hospitalDepartmentService;
     }
 
@@ -91,10 +94,10 @@ public class HospitalDepartmentController {
     public String deleteHospitalDepartment(@PathVariable Long idHospitalDepartmentForDelete, Model model) {
         HospitalDepartment delHospitalDepartmentInDB = hospitalDepartmentService.getHospitalDepartmentById(idHospitalDepartmentForDelete);
 
-        if(hospitalDepartmentService.getHospitalDepartmentById(idHospitalDepartmentForDelete) != null){
+        if(!patientDepartmentService.getAllDepartmentPatients(idHospitalDepartmentForDelete).isEmpty()){
             String messageDeleteError = "All patients must be removed!";
             model.addAttribute("error_del_message", messageDeleteError);
-            model.addAttribute("ret_page", "redirect:/hospitalDepartments");
+            model.addAttribute("ret_page", "/hospitalDepartments");
             return "delete_error";
         }
 

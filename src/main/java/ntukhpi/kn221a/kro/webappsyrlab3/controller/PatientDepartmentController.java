@@ -28,7 +28,7 @@ public class PatientDepartmentController {
     @GetMapping("")
     public String showPatientDepartmentsPage(@RequestParam("id") Long hospitalDepId, Model model) {
         this.hospitalDepartment = hospitalDepartmentService.getHospitalDepartmentById(hospitalDepId);
-        model.addAttribute("patientDepartments", patientDepartmentService.getAllDepartmentPatients(hospitalDepartment));
+        model.addAttribute("patientDepartments", patientDepartmentService.getAllDepartmentPatients(hospitalDepartment.getId()));
         return "/patientDepartments/patientDepartments";
     }
 

@@ -45,7 +45,7 @@
             <div class="form-group">
                 <label for="arrival">Arrival</label>
                 <input type="datetime-local" class="form-control" name="arrival" id="arrival"
-                       th:value="${patientDepartment.arrival}" required/>
+                       th:value="${patientDepartment.getArrivalTime()}" required/>
             </div>
             <div class="form-group">
                 <label for="number">Number</label>
