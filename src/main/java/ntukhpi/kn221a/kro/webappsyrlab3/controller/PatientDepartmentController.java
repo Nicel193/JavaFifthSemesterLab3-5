@@ -4,6 +4,7 @@ import ntukhpi.kn221a.kro.webappsyrlab3.entity.HospitalDepartment;
 import ntukhpi.kn221a.kro.webappsyrlab3.entity.PatientDepartment;
 import ntukhpi.kn221a.kro.webappsyrlab3.service.IHospitalDepartmentService;
 import ntukhpi.kn221a.kro.webappsyrlab3.service.IPatientDepartmentService;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.stereotype.Controller;
@@ -16,7 +17,8 @@ import java.time.LocalDateTime;
 @Controller
 @RequestMapping("patientDepartments")
 public class PatientDepartmentController {
-    private final String TitlePatientDepartment = "TitlePatientDepartment";
+    private final String AddTitlePatientDepartment = "Add PatientDepartment";
+    private final String EditTitlePatientDepartment = "Edit PatientDepartment";
 
     private final IPatientDepartmentService patientDepartmentService;
     private final IHospitalDepartmentService hospitalDepartmentService;
@@ -45,69 +47,46 @@ public class PatientDepartmentController {
     public String createPatientDepartmentForm(Model model) {
         LocalDateTime currentDateTime = LocalDateTime.now();
         PatientDepartment newPatientDepartment = new PatientDepartment(
-                "Smith",
-                "John",
-                "Doe",
-                35,
+                "",
+                "",
+                "",
+                20,
                 hospitalDepartment,
                 currentDateTime,
                 1
         );
-
-        model.addAttribute("patientDepartment", newPatientDepartment);
-        model.addAttribute("titlePatientDepartment", "Add PatientDepartment (WEB LAB#3)");
-        model.addAttribute("errorString", null);
-        return "/patientDepartments/patientDepartment";
+        return LoadPage(model, newPatientDepartment, AddTitlePatientDepartment, null);
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/edit/{idEdit}")
     public String editPatientDepartmentForm(@PathVariable Long idEdit, Model model) {
         PatientDepartment hpForUpdateInDB = patientDepartmentService.getPatientDepartmentById(idEdit);
-        model.addAttribute("patientDepartment", hpForUpdateInDB);
-        System.out.println(hpForUpdateInDB);
-        model.addAttribute("titlePatientDepartment", "Edit PatientDepartment (WEB LAB#3)");
-        model.addAttribute("errorString", null);
-        return "/patientDepartments/patientDepartment";
+        return LoadPage(model, hpForUpdateInDB, EditTitlePatientDepartment, null);
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/save/{id}")
     public String saveOrUpdatePatientDepartment(@PathVariable Long id, @ModelAttribute("patientDepartment") PatientDepartment patientDepartmentToSave, Model model) {
-        PatientDepartment hpToSaveInDB = patientDepartmentService.getPatientDepartmentById(id);
         patientDepartmentToSave.setDepartment(hospitalDepartment);
 
-//        try{
-//
-//        }catch (Exception){
-//
-//        }
-
-        if (id.equals(0L)) {
-            if (hpToSaveInDB == null) {
+        try{
+            if (id.equals(0L)) {
                 patientDepartmentService.savePatientDepartment(patientDepartmentToSave);
                 return PatientDepartmentsRedirect();
-            } else {
+            }else {
+                PatientDepartment hpToSaveInDB = patientDepartmentService.getPatientDepartmentById(id);
 
-                model.addAttribute("patientDepartment", patientDepartmentToSave);
-                model.addAttribute("titlePatientDepartment", "Add PatientDepartment (LAB WEB#3)");
-                model.addAttribute("errorString", "PatientDepartment with such key was finded in DB!");
-                return "/patientDepartments/patientDepartment";
-            }
-        } else {
-            if ((hpToSaveInDB != null && hpToSaveInDB.getId() == patientDepartmentToSave.getId()) || hpToSaveInDB == null) {
-                PatientDepartment existingPatientDepartment = patientDepartmentService.getPatientDepartmentById(id);
-                if (existingPatientDepartment == null) {
-                    return LoadPage(model, patientDepartmentToSave, TitlePatientDepartment,
+                if(hpToSaveInDB == null)
+                    return LoadPage(model, patientDepartmentToSave, AddTitlePatientDepartment,
                             "PatientDepartment for update was not found in DB!");
-                } else {
-                    patientDepartmentService.updatePatientDepartment(existingPatientDepartment.getId(), patientDepartmentToSave);
-                    return PatientDepartmentsRedirect();
-                }
-            } else {
-                return LoadPage(model, patientDepartmentToSave, TitlePatientDepartment,
-                        "PatientDepartment with such key was found in DB!");
+
+                patientDepartmentService.updatePatientDepartment(hpToSaveInDB.getId(), patientDepartmentToSave);
+                return PatientDepartmentsRedirect();
             }
+        }catch (DataIntegrityViolationException exception){
+            return LoadPage(model, patientDepartmentToSave, AddTitlePatientDepartment,
+                    "PatientDepartment with such time was found in DB!");
         }
     }
 

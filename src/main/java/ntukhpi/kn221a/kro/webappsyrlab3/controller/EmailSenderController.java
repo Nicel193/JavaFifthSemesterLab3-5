@@ -1,10 +1,12 @@
 package ntukhpi.kn221a.kro.webappsyrlab3.controller;
 
 import ntukhpi.kn221a.kro.webappsyrlab3.service.EmailSenderService;
-import ntukhpi.kn221a.kro.webappsyrlab3.service.IHospitalDepartmentService;
+import ntukhpi.kn221a.kro.webappsyrlab3.service.IFileCreator;
 import ntukhpi.kn221a.kro.webappsyrlab3.service.JsonCreationService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,16 +16,21 @@ import java.io.File;
 @Controller
 @RequestMapping("email")
 public class EmailSenderController {
-    private final IHospitalDepartmentService hospitalDepartmentService;
+    private final IFileCreator fileCreator;
 
-    public EmailSenderController(IHospitalDepartmentService hospitalDepartmentService) {
-        this.hospitalDepartmentService = hospitalDepartmentService;
+    public EmailSenderController(IFileCreator fileCreator){
+        this.fileCreator = fileCreator;
+    }
+
+    @GetMapping("")
+    public String showPage(Model model) {
+        model.addAttribute("email", "nicelgoog@gmail.com");
+        return "/send_email";
     }
 
     @PostMapping("/send")
     public ResponseEntity<String> saveHospitalDepartment(@RequestParam String email) {
-        File file = new JsonCreationService(hospitalDepartmentService)
-                .createJsonFileFromDatabase("hospitalDepartments");
+        File file = fileCreator.createFileFromDatabase("hospitalDepartments");
 
         boolean isSent = EmailSenderService.sendEmailWithAttachment("sender@gmail.com",
                 email,

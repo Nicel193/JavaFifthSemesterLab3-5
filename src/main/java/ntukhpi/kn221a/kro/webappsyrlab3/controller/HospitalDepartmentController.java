@@ -36,7 +36,13 @@ public class HospitalDepartmentController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/new")
     public String createHospitalDepartmentForm(Model model) {
-        HospitalDepartment newHospitalDepartment = new HospitalDepartment("Cardiology", "CAR", "B1", 2, 20);
+        HospitalDepartment newHospitalDepartment = new HospitalDepartment(
+                "",
+                "",
+                "B1",
+                2,
+                20);
+
         model.addAttribute("hospitalDepartment", newHospitalDepartment);
         model.addAttribute("titleHospitalDepartment", "Add HospitalDepartment (WEB LAB#3)");
         model.addAttribute("errorString", null);

@@ -1,17 +1,9 @@
-[ {
+{
   "id" : 17,
   "nameDep" : "Cardiocxlogy",
-  "nameSDep" : "CAR",
+  "nameSDep" : "CARdddfg",
   "codeBuilding" : "B1",
   "floor" : 2,
   "boxCount" : 20,
   "key" : "Cardiocxlogy"
-}, {
-  "id" : 18,
-  "nameDep" : "Cardidfology",
-  "nameSDep" : "CAR",
-  "codeBuilding" : "B1",
-  "floor" : 2,
-  "boxCount" : 20,
-  "key" : "Cardidfology"
-} ]
+}
