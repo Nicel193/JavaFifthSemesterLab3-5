@@ -1,3 +1,5 @@
+package ntukhpi.semit.kro.webjavaspringfirsttry2023a;
+
 import ntukhpi.kn221a.kro.webappsyrlab3.entity.HospitalDepartment;
 import java.util.List;
 import java.util.ArrayList;

@@ -39,6 +39,11 @@ public class HospitalDepartment implements IEntity {
         this.boxCount = boxCount;
     }
 
+    public HospitalDepartment(String hospitalDepartmentName) {
+        this.id = 0L;
+        this.nameDep = hospitalDepartmentName;
+    }
+
     @Override
     public String getKey() {
         return nameDep;
