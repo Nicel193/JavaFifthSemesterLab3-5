@@ -25,22 +25,22 @@
             <div class="form-group">
                 <label for="surname">Surname</label>
                 <input type="text" class="form-control" name="surname" id="surname"
-                       th:value="${patientDepartment.surname}" required/>
+                       th:value="${patientDepartment.surname}"  pattern="[A-Z][a-zA-Z]*" required/>
             </div>
             <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" class="form-control" name="name" id="name"
-                       th:value="${patientDepartment.name}" required/>
+                       th:value="${patientDepartment.name}"  pattern="[A-Z][a-zA-Z]*" required/>
             </div>
             <div class="form-group">
                 <label for="pname">Patronymic Name</label>
                 <input type="text" class="form-control" name="pname" id="pname"
-                       th:value="${patientDepartment.pname}" required/>
+                       th:value="${patientDepartment.pname}"  pattern="[A-Z][a-zA-Z]*" required/>
             </div>
             <div class="form-group">
                 <label for="fullYears">Full Years</label>
                 <input type="number" class="form-control" name="fullYears" id="fullYears"
-                       th:value="${patientDepartment.fullYears}" min="0" required/>
+                       th:value="${patientDepartment.fullYears}" min="0" max="300" required/>
             </div>
             <div class="form-group">
                 <label for="arrival">Arrival</label>

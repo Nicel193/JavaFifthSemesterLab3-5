@@ -16,6 +16,8 @@ import java.time.LocalDateTime;
 @Controller
 @RequestMapping("patientDepartments")
 public class PatientDepartmentController {
+    private final String TitlePatientDepartment = "TitlePatientDepartment";
+
     private final IPatientDepartmentService patientDepartmentService;
     private final IHospitalDepartmentService hospitalDepartmentService;
     private HospitalDepartment hospitalDepartment;
@@ -72,14 +74,21 @@ public class PatientDepartmentController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/save/{id}")
     public String saveOrUpdatePatientDepartment(@PathVariable Long id, @ModelAttribute("patientDepartment") PatientDepartment patientDepartmentToSave, Model model) {
-        PatientDepartment hpToSaveInDB = patientDepartmentService.getPatientDepartmentByName(patientDepartmentToSave.getName());
+        PatientDepartment hpToSaveInDB = patientDepartmentService.getPatientDepartmentById(id);
         patientDepartmentToSave.setDepartment(hospitalDepartment);
+
+//        try{
+//
+//        }catch (Exception){
+//
+//        }
 
         if (id.equals(0L)) {
             if (hpToSaveInDB == null) {
                 patientDepartmentService.savePatientDepartment(patientDepartmentToSave);
                 return PatientDepartmentsRedirect();
             } else {
+
                 model.addAttribute("patientDepartment", patientDepartmentToSave);
                 model.addAttribute("titlePatientDepartment", "Add PatientDepartment (LAB WEB#3)");
                 model.addAttribute("errorString", "PatientDepartment with such key was finded in DB!");
@@ -89,19 +98,15 @@ public class PatientDepartmentController {
             if ((hpToSaveInDB != null && hpToSaveInDB.getId() == patientDepartmentToSave.getId()) || hpToSaveInDB == null) {
                 PatientDepartment existingPatientDepartment = patientDepartmentService.getPatientDepartmentById(id);
                 if (existingPatientDepartment == null) {
-                    model.addAttribute("patientDepartment", patientDepartmentToSave);
-                    model.addAttribute("titlePatientDepartment", "Edit PatientDepartment (WEB LAB#3)");
-                    model.addAttribute("errorString", "PatientDepartment for update was not found in DB!");
-                    return "/patientDepartments/patientDepartment";
+                    return LoadPage(model, patientDepartmentToSave, TitlePatientDepartment,
+                            "PatientDepartment for update was not found in DB!");
                 } else {
                     patientDepartmentService.updatePatientDepartment(existingPatientDepartment.getId(), patientDepartmentToSave);
                     return PatientDepartmentsRedirect();
                 }
             } else {
-                model.addAttribute("patientDepartment", patientDepartmentToSave);
-                model.addAttribute("titlePatientDepartment", "Edit PatientDepartment (WEB LAB#3)");
-                model.addAttribute("errorString", "PatientDepartment with such key was found in DB!");
-                return "/patientDepartments/patientDepartment";
+                return LoadPage(model, patientDepartmentToSave, TitlePatientDepartment,
+                        "PatientDepartment with such key was found in DB!");
             }
         }
     }
@@ -124,5 +129,15 @@ public class PatientDepartmentController {
 
     private String PatientDepartmentsRedirect() {
         return "redirect:/patientDepartments?id=" + hospitalDepartment.getId();
+    }
+
+    private String LoadPage(Model model, PatientDepartment patientDepartment,
+                            String titlePatientDepartment,
+                            String errorString) {
+        model.addAttribute("patientDepartment", patientDepartment);
+        model.addAttribute("titlePatientDepartment", titlePatientDepartment);
+        model.addAttribute("errorString", errorString);
+
+        return "/patientDepartments/patientDepartment";
     }
 }
