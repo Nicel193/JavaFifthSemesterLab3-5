@@ -11,4 +11,5 @@ import java.util.List;
 @Repository
 public interface PatientDepartmentRepository extends JpaRepository<PatientDepartment, Long> {
     List<PatientDepartment> findByDepartmentId(Long departmentId);
+    List<PatientDepartment> findBySurnameAndNameAndPnameAndDepartment(String surname, String name, String pname, HospitalDepartment department);
 }
