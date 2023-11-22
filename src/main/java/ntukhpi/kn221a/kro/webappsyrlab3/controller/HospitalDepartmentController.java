@@ -44,7 +44,7 @@ public class HospitalDepartmentController {
                 20);
 
         model.addAttribute("hospitalDepartment", newHospitalDepartment);
-        model.addAttribute("titleHospitalDepartment", "Add HospitalDepartment (WEB LAB#3)");
+        model.addAttribute("titleHospitalDepartment", "Add HospitalDepartment");
         model.addAttribute("errorString", null);
         return "/hospitalDepartments/hospitalDepartment";
     }
@@ -55,7 +55,7 @@ public class HospitalDepartmentController {
         HospitalDepartment hpForUpdateInDB = hospitalDepartmentService.getHospitalDepartmentById(idEdit);
         model.addAttribute("hospitalDepartment", hpForUpdateInDB);
         System.out.println(hpForUpdateInDB);
-        model.addAttribute("titleHospitalDepartment", "Edit HospitalDepartment (WEB LAB#3)");
+        model.addAttribute("titleHospitalDepartment", "Edit HospitalDepartment");
         model.addAttribute("errorString", null);
         return "/hospitalDepartments/hospitalDepartment";
     }
@@ -70,7 +70,7 @@ public class HospitalDepartmentController {
                 return "redirect:/hospitalDepartments";
             } else {
                 model.addAttribute("hospitalDepartment", hospitalDepartmentToSave);
-                model.addAttribute("titleHospitalDepartment", "Add HospitalDepartment (LAB WEB#3)");
+                model.addAttribute("titleHospitalDepartment", "Add HospitalDepartment");
                 model.addAttribute("errorString", "HospitalDepartment with such key was finded in DB!");
                 return "/hospitalDepartments/hospitalDepartment";
             }
@@ -79,7 +79,7 @@ public class HospitalDepartmentController {
                 HospitalDepartment existingHospitalDepartment = hospitalDepartmentService.getHospitalDepartmentById(id);
                 if (existingHospitalDepartment == null) {
                     model.addAttribute("hospitalDepartment", hospitalDepartmentToSave);
-                    model.addAttribute("titleHospitalDepartment", "Edit HospitalDepartment (WEB LAB#3)");
+                    model.addAttribute("titleHospitalDepartment", "Edit HospitalDepartment");
                     model.addAttribute("errorString", "HospitalDepartment for update was not found in DB!");
                     return "/hospitalDepartments/hospitalDepartment";
                 } else {
@@ -88,7 +88,7 @@ public class HospitalDepartmentController {
                 }
             } else {
                 model.addAttribute("hospitalDepartment", hospitalDepartmentToSave);
-                model.addAttribute("titleHospitalDepartment", "Edit HospitalDepartment (WEB LAB#3)");
+                model.addAttribute("titleHospitalDepartment", "Edit HospitalDepartment");
                 model.addAttribute("errorString", "HospitalDepartment with such key was found in DB!");
                 return "/hospitalDepartments/hospitalDepartment";
             }

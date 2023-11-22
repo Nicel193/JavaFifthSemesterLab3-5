@@ -1,226 +1,109 @@
 [ {
-  "id" : 17,
-  "nameDep" : "Cardiocxlogy",
-  "nameSDep" : "CARdddfg",
+  "id" : 24,
+  "nameDep" : "Cardiology",
+  "nameSDep" : "CAR",
   "codeBuilding" : "B1",
   "floor" : 2,
   "boxCount" : 20,
-  "key" : "Cardiocxlogy"
+  "key" : "Cardiology"
 }, {
-  "id" : 6,
-  "surname" : "Smith324",
-  "name" : "John234",
-  "pname" : "Doe34",
-  "fullYears" : 34,
+  "id" : 49,
+  "surname" : "Stepanov",
+  "name" : "Denis",
+  "pname" : "Ilyich",
+  "fullYears" : 20,
   "department" : {
-    "id" : 17,
-    "nameDep" : "Cardiocxlogy",
-    "nameSDep" : "CARdddfg",
+    "id" : 24,
+    "nameDep" : "Cardiology",
+    "nameSDep" : "CAR",
     "codeBuilding" : "B1",
     "floor" : 2,
     "boxCount" : 20,
-    "key" : "Cardiocxlogy"
+    "key" : "Cardiology"
   },
-  "arrival" : [ 2023, 11, 14, 17, 31 ],
-  "number" : 5,
-  "arrivalTime" : "2023-11-14T17:31",
-  "hospitalDepartmentName" : "Cardiocxlogy"
-}, {
-  "id" : 8,
-  "surname" : "Smith345ewe",
-  "name" : "John345sad",
-  "pname" : "Doe435sad",
-  "fullYears" : 35,
-  "department" : {
-    "id" : 17,
-    "nameDep" : "Cardiocxlogy",
-    "nameSDep" : "CARdddfg",
-    "codeBuilding" : "B1",
-    "floor" : 2,
-    "boxCount" : 20,
-    "key" : "Cardiocxlogy"
-  },
-  "arrival" : [ 2023, 11, 25, 21, 40 ],
+  "arrival" : [ 2023, 11, 22, 1, 36 ],
   "number" : 1,
-  "arrivalTime" : "2023-11-25T21:40",
-  "hospitalDepartmentName" : "Cardiocxlogy"
+  "arrivalTime" : "2023-11-22T01:36",
+  "hospitalDepartmentName" : "Cardiology"
 }, {
-  "id" : 9,
-  "surname" : "Smith880053535",
-  "name" : "John23",
-  "pname" : "Doe23",
-  "fullYears" : 3523,
+  "id" : 50,
+  "surname" : "Platonovich",
+  "name" : "Vasiliev",
+  "pname" : "Vladimir",
+  "fullYears" : 18,
   "department" : {
-    "id" : 17,
-    "nameDep" : "Cardiocxlogy",
-    "nameSDep" : "CARdddfg",
+    "id" : 24,
+    "nameDep" : "Cardiology",
+    "nameSDep" : "CAR",
     "codeBuilding" : "B1",
     "floor" : 2,
     "boxCount" : 20,
-    "key" : "Cardiocxlogy"
+    "key" : "Cardiology"
   },
-  "arrival" : [ 2023, 11, 4, 20, 55 ],
+  "arrival" : [ 2023, 11, 10, 7, 44 ],
   "number" : 2,
-  "arrivalTime" : "2023-11-04T20:55",
-  "hospitalDepartmentName" : "Cardiocxlogy"
+  "arrivalTime" : "2023-11-10T07:44",
+  "hospitalDepartmentName" : "Cardiology"
 }, {
-  "id" : 19,
-  "surname" : "Smithfsdf",
-  "name" : "Johnsdfdsf",
-  "pname" : "Doedsfdsf",
-  "fullYears" : 35,
+  "id" : 54,
+  "surname" : "Sychev",
+  "name" : "Nikita",
+  "pname" : "Matveevich",
+  "fullYears" : 22,
   "department" : {
-    "id" : 17,
-    "nameDep" : "Cardiocxlogy",
-    "nameSDep" : "CARdddfg",
+    "id" : 24,
+    "nameDep" : "Cardiology",
+    "nameSDep" : "CAR",
     "codeBuilding" : "B1",
     "floor" : 2,
     "boxCount" : 20,
-    "key" : "Cardiocxlogy"
+    "key" : "Cardiology"
   },
-  "arrival" : [ 2023, 11, 21, 13, 4 ],
-  "number" : 1,
-  "arrivalTime" : "2023-11-21T13:04",
-  "hospitalDepartmentName" : "Cardiocxlogy"
-}, {
-  "id" : 21,
-  "surname" : "Smithret",
-  "name" : "John",
-  "pname" : "Doe",
-  "fullYears" : 35,
-  "department" : {
-    "id" : 17,
-    "nameDep" : "Cardiocxlogy",
-    "nameSDep" : "CARdddfg",
-    "codeBuilding" : "B1",
-    "floor" : 2,
-    "boxCount" : 20,
-    "key" : "Cardiocxlogy"
-  },
-  "arrival" : [ 2023, 11, 21, 13, 17 ],
-  "number" : 1,
-  "arrivalTime" : "2023-11-21T13:17",
-  "hospitalDepartmentName" : "Cardiocxlogy"
+  "arrival" : [ 2023, 11, 22, 1, 50 ],
+  "number" : 4,
+  "arrivalTime" : "2023-11-22T01:50",
+  "hospitalDepartmentName" : "Cardiology"
 }, {
   "id" : 25,
-  "surname" : "Smith",
-  "name" : "John",
-  "pname" : "Doe",
-  "fullYears" : 35,
+  "nameDep" : "Orthopedics",
+  "nameSDep" : "ORTHO",
+  "codeBuilding" : "B2",
+  "floor" : 1,
+  "boxCount" : 15,
+  "key" : "Orthopedics"
+}, {
+  "id" : 55,
+  "surname" : "Romanov",
+  "name" : "Gleb",
+  "pname" : "Egorovich",
+  "fullYears" : 23,
   "department" : {
-    "id" : 17,
-    "nameDep" : "Cardiocxlogy",
-    "nameSDep" : "CARdddfg",
-    "codeBuilding" : "B1",
-    "floor" : 2,
-    "boxCount" : 20,
-    "key" : "Cardiocxlogy"
+    "id" : 25,
+    "nameDep" : "Orthopedics",
+    "nameSDep" : "ORTHO",
+    "codeBuilding" : "B2",
+    "floor" : 1,
+    "boxCount" : 15,
+    "key" : "Orthopedics"
   },
-  "arrival" : [ 2023, 11, 21, 13, 46 ],
-  "number" : 1,
-  "arrivalTime" : "2023-11-21T13:46",
-  "hospitalDepartmentName" : "Cardiocxlogy"
+  "arrival" : [ 2023, 11, 11, 5, 57 ],
+  "number" : 6,
+  "arrivalTime" : "2023-11-11T05:57",
+  "hospitalDepartmentName" : "Orthopedics"
 }, {
   "id" : 27,
-  "surname" : "Smith",
-  "name" : "John",
-  "pname" : "Doe",
-  "fullYears" : 35,
-  "department" : {
-    "id" : 17,
-    "nameDep" : "Cardiocxlogy",
-    "nameSDep" : "CARdddfg",
-    "codeBuilding" : "B1",
-    "floor" : 2,
-    "boxCount" : 20,
-    "key" : "Cardiocxlogy"
-  },
-  "arrival" : [ 2023, 11, 21, 13, 49 ],
-  "number" : 1,
-  "arrivalTime" : "2023-11-21T13:49",
-  "hospitalDepartmentName" : "Cardiocxlogy"
+  "nameDep" : "Surgery",
+  "nameSDep" : "SURG",
+  "codeBuilding" : "B4",
+  "floor" : 2,
+  "boxCount" : 25,
+  "key" : "Surgery"
 }, {
-  "id" : 43,
-  "surname" : "Smith",
-  "name" : "John",
-  "pname" : "Doe",
-  "fullYears" : 35,
-  "department" : {
-    "id" : 17,
-    "nameDep" : "Cardiocxlogy",
-    "nameSDep" : "CARdddfg",
-    "codeBuilding" : "B1",
-    "floor" : 2,
-    "boxCount" : 20,
-    "key" : "Cardiocxlogy"
-  },
-  "arrival" : [ 2023, 11, 21, 13, 56 ],
-  "number" : 1,
-  "arrivalTime" : "2023-11-21T13:56",
-  "hospitalDepartmentName" : "Cardiocxlogy"
-}, {
-  "id" : 45,
-  "surname" : "Smith",
-  "name" : "John",
-  "pname" : "Doe",
-  "fullYears" : 35,
-  "department" : {
-    "id" : 17,
-    "nameDep" : "Cardiocxlogy",
-    "nameSDep" : "CARdddfg",
-    "codeBuilding" : "B1",
-    "floor" : 2,
-    "boxCount" : 20,
-    "key" : "Cardiocxlogy"
-  },
-  "arrival" : [ 2023, 11, 21, 14, 6 ],
-  "number" : 1,
-  "arrivalTime" : "2023-11-21T14:06",
-  "hospitalDepartmentName" : "Cardiocxlogy"
-}, {
-  "id" : 21,
-  "nameDep" : "CardiologySsdas",
-  "nameSDep" : "CARsd",
+  "id" : 28,
+  "nameDep" : "Obstetrics & Gynecology",
+  "nameSDep" : "OBGYN",
   "codeBuilding" : "B1",
-  "floor" : 5,
+  "floor" : 2,
   "boxCount" : 15,
-  "key" : "CardiologySsdas"
-}, {
-  "id" : 16,
-  "surname" : "Smithdf",
-  "name" : "Johndfd",
-  "pname" : "Doe",
-  "fullYears" : 35,
-  "department" : {
-    "id" : 21,
-    "nameDep" : "CardiologySsdas",
-    "nameSDep" : "CARsd",
-    "codeBuilding" : "B1",
-    "floor" : 5,
-    "boxCount" : 15,
-    "key" : "CardiologySsdas"
-  },
-  "arrival" : [ 2023, 11, 21, 13, 0 ],
-  "number" : 1,
-  "arrivalTime" : "2023-11-21T13:00",
-  "hospitalDepartmentName" : "CardiologySsdas"
-}, {
-  "id" : 47,
-  "surname" : "Smith",
-  "name" : "John",
-  "pname" : "Doe",
-  "fullYears" : 35,
-  "department" : {
-    "id" : 21,
-    "nameDep" : "CardiologySsdas",
-    "nameSDep" : "CARsd",
-    "codeBuilding" : "B1",
-    "floor" : 5,
-    "boxCount" : 15,
-    "key" : "CardiologySsdas"
-  },
-  "arrival" : [ 2023, 11, 21, 14, 10 ],
-  "number" : 1,
-  "arrivalTime" : "2023-11-21T14:10",
-  "hospitalDepartmentName" : "CardiologySsdas"
+  "key" : "Obstetrics & Gynecology"
 } ]
